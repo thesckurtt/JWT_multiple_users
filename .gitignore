@@ -42,3 +42,10 @@ coverage/
 
 # Testes temporários
 test-results/
+
+# Ferramentas de documentação
+typedoc/
+docs/
+
+# Relatórios de performance
+*.report
