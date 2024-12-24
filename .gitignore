@@ -1,0 +1,44 @@
+# Diretório node_modules
+node_modules/
+
+# Diretório de saída padrão
+dist/
+build/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.log
+
+# Configuração do TypeScript
+tsconfig.tsbuildinfo
+
+# Configuração do ambiente
+.env
+.env.local
+.env.*.local
+
+# ESLint
+.eslintcache
+
+# Prettier
+.prettiercache
+
+# Cache do pacote
+.pnp.*
+
+# Cobertura de testes
+coverage/
+.nyc_output/
+
+# Testes temporários
+test-results/
