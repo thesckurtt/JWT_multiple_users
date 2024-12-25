@@ -7,14 +7,16 @@ export class Users {
 
     const hashPassword : string = await argon2.hash(data.password);
 
-    prisma.user.create({
+    const result = await prisma.user.create({
       data: {
-        id: data.id,
+        name: data.name,
         email: data.email,
         password: hashPassword,
         isAdmin: data.isAdmin,
       },
     });
+
+    console.info(result);
   }
   public static async isValidUser(email: string, password: string) {}
 }
