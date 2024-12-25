@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "module": "ESNext", /* Specify what module code is generated. */
+    "rootDir": "./src", /* Specify the root folder within your source files. */
+    "moduleResolution": "node", /* Specify how TypeScript looks up a file from a given module specifier. */ /* Specify a file that bundles all outputs into one JavaScript file. If 'declaration' is true, also designates a file that bundles all .d.ts output. */
+    "outDir": "./dist", /* Specify an output folder for all emitted files. */
+    "esModuleInterop": true, /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
+    "strict": true, /* Enable all strict type-checking options. */
+    "resolveJsonModule": true, // Permite importar módulos JSON
+    "skipLibCheck": true,
+    "baseUrl": ".", // Define o caminho base para a resolução de módulos
+    "paths": {
+      "*": [
+        "node_modules/*",
+        "src/*"
+      ] // Configurações adicionais para resolver módulos
+    }, /* Skip type checking all .d.ts files. */
+  },
+  "include": [
+    "src/**/*.ts" // Inclui todos os arquivos TypeScript da pasta src
+  ],
+  "exclude": [
+    "node_modules" // Exclui a pasta node_modules
+  ]
+}
