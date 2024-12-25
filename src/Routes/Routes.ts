@@ -1,6 +1,8 @@
 import { FastifyInstance } from "fastify";
 import { AuthRoutes } from "./AuthRoutes.js";
+import { env_PREFIX_AUTH_ROUTES } from "../Config/env_config.js";
 
 export async function RegisterRoute(fastify: FastifyInstance) {
-  fastify.register(AuthRoutes); // Registers AuthRoutes
+  console.log(env_PREFIX_AUTH_ROUTES);
+  fastify.register(AuthRoutes, {prefix: env_PREFIX_AUTH_ROUTES}); // Registers AuthRoutes
 }
