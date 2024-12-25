@@ -9,17 +9,24 @@
     "dev": "node --watch .\\dist\\server.js",
     "dev:tswatch": "tsc --watch",
     "build": "tsc",
-    "start": "node .\\dist\\server.js"
+    "start": "node .\\dist\\server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate:dev": "prisma migrate dev",
+    "prisma:migrate:reset": "prisma migrate reset",
+    "prisma:studio": "prisma studio",
+    "prisma:seed": "prisma db seed"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.10.2",
+    "prisma": "^6.1.0",
     "typescript": "^5.7.2"
   },
   "dependencies": {
     "@fastify/jwt": "^9.0.2",
+    "@prisma/client": "^6.1.0",
     "argon2": "^0.41.1",
     "dotenv": "^16.4.7",
     "fastify": "^5.2.0"
