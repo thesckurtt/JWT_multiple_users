@@ -1,9 +1,7 @@
 import fastify from "fastify";
-// import { AuthRoutes } from "./Routes/AuthRoutes.js";
 import { RegisterRoute } from "./Routes/Routes.js";
 export const app = fastify({ logger: true });
 
-// Registers
 RegisterRoute(app);
 
 app.listen(
