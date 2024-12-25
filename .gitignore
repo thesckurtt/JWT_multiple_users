@@ -49,3 +49,6 @@ docs/
 
 # Relatórios de performance
 *.report
+
+# Ignorar os arquivos do Prisma
+prisma/migrations/
