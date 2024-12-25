@@ -15,6 +15,7 @@ datasource db {
 
 model User {
   id        String   @id @default(uuid()) // UUID para identificador único
+  name      String
   email     String   @unique              // Email único
   password  String                         // Senha
   isAdmin   Boolean  @default(false)       // Indica se o usuário é administrador
