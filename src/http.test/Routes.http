@@ -5,3 +5,7 @@ Content-Type: application/json
   "email": "Jarod92@hotmail.com",
   "password": "admin"
 }
+
+###
+
+GET http://127.0.0.1:3333/Dashboard/
