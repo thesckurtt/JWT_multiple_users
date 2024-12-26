@@ -1,5 +1,6 @@
 import { prisma } from "../../Config/db_config.js";
 import { UserInterface } from "../../TS/Interfaces/UserInterface.js";
+import { env_SALT_PASSWORD} from "../../Config/env_config.js"
 import Joi from "joi";
 import { AuthControllerLoginSchema } from "../../Controller/AuthController/Schemas/AuthControllerLoginSchema.js";
 import { Authenticator } from "../../Utils/Authenticator.js";
@@ -7,7 +8,10 @@ import argon2 from "argon2";
 
 export class Users {
   public static async createUser(data: UserInterface) {
-    const hashPassword: string = await argon2.hash(data.password);
+
+    const passwordWithSalt: string = data.password + env_SALT_PASSWORD;
+    const hashPassword: string = await argon2.hash(passwordWithSalt);
+    
     try {
       const result = await prisma.users.create({
         data: {
@@ -22,6 +26,7 @@ export class Users {
       throw new Error(`Error: ${error}`);
     }
   }
+
   public static async isValidUser(email: string, password: string): Promise<boolean> {
     const data = {
       email,
@@ -43,9 +48,11 @@ export class Users {
       return false;
     }
 
+    const passwordWithSalt: string = value.password + env_SALT_PASSWORD;
+
     const isValidPassword: boolean = await argon2.verify(
       user.password,
-      value.password
+      passwordWithSalt
     );
     if (user && isValidPassword) {
       return true;
