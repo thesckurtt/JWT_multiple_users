@@ -27,7 +27,7 @@ export class Users {
     }
   }
 
-  public static async isValidUser(email: string, password: string): Promise<boolean> {
+  public static async isValidUser(email: string, password: string): Promise<{user? : UserInterface, isValid: boolean}> {
     const data = {
       email,
       password,
@@ -39,25 +39,26 @@ export class Users {
     );
 
     if (error) {
-      return false;
+      return {isValid: false}
     }
 
     const user = await Users.getUser(value.email);
 
     if (!user) {
-      return false;
+      return {isValid: false}
     }
 
     const passwordWithSalt: string = value.password + env_SALT_PASSWORD;
-
     const isValidPassword: boolean = await argon2.verify(
       user.password,
       passwordWithSalt
     );
+
     if (user && isValidPassword) {
-      return true;
+      return {user: user, isValid: true};
     }
-    return false;
+
+    return {isValid: false};
   }
   public static async getUser(param: string): Promise<UserInterface | null> {
     const result = await prisma.users.findFirst({
