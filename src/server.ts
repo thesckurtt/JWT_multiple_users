@@ -1,6 +1,6 @@
 import fastify from "fastify";
 import { RegisterRoute } from "./Routes/Routes.js";
-export const app = fastify({ logger: true });
+export const app = fastify({ logger: false });
 
 RegisterRoute(app);
 
