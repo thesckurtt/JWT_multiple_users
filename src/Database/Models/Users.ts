@@ -1,5 +1,8 @@
 import { prisma } from "../../Config/db_config.js";
 import { UserInterface } from "../../TS/Interfaces/UserInterface.js";
+import Joi from "joi";
+import { AuthControllerLoginSchema } from "../../Controller/AuthController/Schemas/AuthControllerLoginSchema.js";
+import { Authenticator } from "../../Utils/Authenticator.js";
 import argon2 from "argon2";
 
 export class Users {
@@ -16,19 +19,48 @@ export class Users {
       });
       console.info(result);
     } catch (error) {
-      throw new Error(`Error: ${error}`)
+      throw new Error(`Error: ${error}`);
     }
   }
-  public static async isValidUser(email: string, password: string) {}
-  public static async getUser(param: string) : Promise<UserInterface | null>{
+  public static async isValidUser(email: string, password: string): Promise<boolean> {
+    const data = {
+      email,
+      password,
+    };
+
+    const { error, value } = Authenticator.validateAny(
+      AuthControllerLoginSchema,
+      data
+    );
+
+    if (error) {
+      return false;
+    }
+
+    const user = await Users.getUser(value.email);
+
+    if (!user) {
+      return false;
+    }
+
+    const isValidPassword: boolean = await argon2.verify(
+      user.password,
+      value.password
+    );
+    if (user && isValidPassword) {
+      return true;
+    }
+    return false;
+  }
+  public static async getUser(param: string): Promise<UserInterface | null> {
     const result = await prisma.users.findFirst({
       where: {
         OR: [
-          {email: typeof param === "string" ? param : undefined },
-          {id: typeof param === "string" ? param : undefined },
-        ]
-      }
-    })
+          { email: typeof param === "string" ? param : undefined },
+          { id: typeof param === "string" ? param : undefined },
+        ],
+      },
+    });
     return result;
   }
 }
