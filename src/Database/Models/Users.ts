@@ -20,4 +20,15 @@ export class Users {
     }
   }
   public static async isValidUser(email: string, password: string) {}
+  public static async getUser(param: string) : Promise<UserInterface | null>{
+    const result = await prisma.users.findFirst({
+      where: {
+        OR: [
+          {email: typeof param === "string" ? param : undefined },
+          {id: typeof param === "string" ? param : undefined },
+        ]
+      }
+    })
+    return result;
+  }
 }
