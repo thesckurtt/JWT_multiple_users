@@ -18,13 +18,11 @@ export class AuthController {
 
     const isValidUser = await Users.isValidUser(value.email, value.password);
 
-    console.log(isValidUser?.user?.email);
-
     if (isValidUser.isValid) {
       if (isValidUser?.user?.isAdmin) {
-        return app.jwt.sign({ isAdmin: true }, { expiresIn: env_JWT_EXPIRATION_TIME });
+        return app.jwt.sign({ isAdmin: true, userId: isValidUser?.user?.id }, { expiresIn: env_JWT_EXPIRATION_TIME });
       }
-      return app.jwt.sign({ isAdmin: false }, { expiresIn: env_JWT_EXPIRATION_TIME });
+      return app.jwt.sign({ isAdmin: false, userId: isValidUser?.user?.id }, { expiresIn: env_JWT_EXPIRATION_TIME });
     }
   }
 }
