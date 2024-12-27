@@ -1,7 +1,7 @@
 import {fastify} from "fastify";
 import { RegisterRoute } from "./Routes/Routes.js";
 import { Registers } from "./Server/Registers.js";
-export const app = fastify({ logger: false });
+export const app = fastify({ logger: true });
 
 Registers(app);
 RegisterRoute(app);
