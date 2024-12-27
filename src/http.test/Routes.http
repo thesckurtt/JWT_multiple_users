@@ -2,11 +2,21 @@ POST  http://127.0.0.1:3333/auth/login
 Content-Type: application/json
 
 {
-  "email": "Jaquan3@hotmail.com",
+  "email": "Isabell_OKon@yahoo.com",
   "password": "admin"
 }
 
 ###
 
 GET http://127.0.0.1:3333/Dashboard/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNzM1MjU5MjAxLCJleHAiOjE3MzUyNjI4MDF9.WBBWR5JqI6iLYqv8y--JxWmyNOWE6h3V3BoAYLjOVPk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbWluIjp0cnVlLCJ1c2VySWQiOiIyNDc4MjUwNi03OTcwLTQ3NTgtOGQ4Yy1hYTI2MGM3MmUyMTIiLCJpYXQiOjE3MzUyNjIxODIsImV4cCI6MTczNTI2NTc4Mn0.7_SkhPSFoJbbCWDhQc7I3eL4ErjeIWFhBu7E7nXRwGE
+
+###
+
+POST http://127.0.0.1:3333/Dashboard/black-list/add
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbWluIjp0cnVlLCJ1c2VySWQiOiIyNDc4MjUwNi03OTcwLTQ3NTgtOGQ4Yy1hYTI2MGM3MmUyMTIiLCJpYXQiOjE3MzUyNjIxODIsImV4cCI6MTczNTI2NTc4Mn0.7_SkhPSFoJbbCWDhQc7I3eL4ErjeIWFhBu7E7nXRwGE
+Content-Type: application/json
+
+{
+  "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbWluIjp0cnVlLCJ1c2VySWQiOiIyNDc4MjUwNi03OTcwLTQ3NTgtOGQ4Yy1hYTI2MGM3MmUyMTIiLCJpYXQiOjE3MzUyNjIxODIsImV4cCI6MTczNTI2NTc4Mn0.7_SkhPSFoJbbCWDhQc7I3eL4ErjeIWFhBu7E7nXRwGE"
+}
