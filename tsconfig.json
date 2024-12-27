@@ -10,6 +10,8 @@
     "strict": true, /* Enable all strict type-checking options. */
     "resolveJsonModule": true, // Permite importar módulos JSON
     "skipLibCheck": true,
+    "allowJs": true,
+    "checkJs": false,
     "baseUrl": ".", // Define o caminho base para a resolução de módulos
     "paths": {
       "*": [
