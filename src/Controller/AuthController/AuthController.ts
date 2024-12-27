@@ -20,9 +20,19 @@ export class AuthController {
 
     if (isValidUser.isValid) {
       if (isValidUser?.user?.isAdmin) {
-        return app.jwt.sign({ isAdmin: true, userId: isValidUser?.user?.id }, { expiresIn: env_JWT_EXPIRATION_TIME });
+        return {
+          token: app.jwt.sign(
+            { isAdmin: true, userId: isValidUser?.user?.id },
+            { expiresIn: env_JWT_EXPIRATION_TIME }
+          ),
+        };
       }
-      return app.jwt.sign({ isAdmin: false, userId: isValidUser?.user?.id }, { expiresIn: env_JWT_EXPIRATION_TIME });
+      return {
+        token: app.jwt.sign(
+          { isAdmin: false, userId: isValidUser?.user?.id },
+          { expiresIn: env_JWT_EXPIRATION_TIME }
+        ),
+      };
     }
   }
 }
