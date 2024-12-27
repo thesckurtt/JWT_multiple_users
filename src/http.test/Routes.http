@@ -2,10 +2,13 @@ POST  http://127.0.0.1:3333/auth/login
 Content-Type: application/json
 
 {
-  "email": "Isabell_OKon@yahoo.com",
+  "email": "Eden_Nienow@hotmail.com",
   "password": "admin"
 }
 
+###
+
+GET http://127.0.0.1:3333/App/
 ###
 
 GET http://127.0.0.1:3333/Dashboard/
