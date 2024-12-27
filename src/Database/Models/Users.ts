@@ -1,7 +1,6 @@
 import { prisma } from "../../Config/db_config.js";
 import { UserInterface } from "../../TS/Interfaces/UserInterface.js";
 import { env_SALT_PASSWORD } from "../../Config/env_config.js";
-import Joi from "joi";
 import { AuthControllerLoginSchema } from "../../Controller/AuthController/Schemas/AuthControllerLoginSchema.js";
 import { Authenticator } from "../../Utils/Authenticator.js";
 import argon2 from "argon2";
@@ -46,7 +45,7 @@ export class Users {
     const user = await Users.getUserByEmail(value.email);
 
     if (!user) {
-      return {isValid: false}
+      return { isValid: false };
     }
 
     const passwordWithSalt: string = value.password + env_SALT_PASSWORD;
@@ -56,18 +55,18 @@ export class Users {
     );
 
     if (user && isValidPassword) {
-      return {user: user, isValid: true};
+      return { user: user, isValid: true };
     }
 
-    return {isValid: false};
+    return { isValid: false };
   }
-  
-  public static async getUserByEmail(email: string): Promise<UserInterface | null> {
+
+  public static async getUserByEmail(
+    email: string
+  ): Promise<UserInterface | null> {
     const result = await prisma.users.findFirst({
       where: {
-        OR: [
-          { email: typeof email === "string" ? email : undefined },
-        ],
+        OR: [{ email: typeof email === "string" ? email : undefined }],
       },
     });
     return result;
