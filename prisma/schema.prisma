@@ -14,11 +14,18 @@ datasource db {
 }
 
 model Users {
-  id        String   @id @default(uuid()) // UUID para identificador único
+  id        String   @id @default(uuid()) @db.Uuid // UUID para identificador único
   name      String
-  email     String   @unique              // Email único
-  password  String                         // Senha
-  isAdmin   Boolean  @default(false)       // Indica se o usuário é administrador
-  createdAt DateTime @default(now())       // Data de criação
-  updatedAt DateTime @updatedAt            // Atualizado automaticamente
+  email     String   @unique // Email único
+  password  String // Senha
+  isAdmin   Boolean  @default(false) // Indica se o usuário é administrador
+  createdAt DateTime @default(now()) // Data de criação
+  updatedAt DateTime @updatedAt // Atualizado automaticamente
+}
+
+model BlackListJWT {
+  id        String   @id @default(uuid()) @db.Uuid // UUID para identificador único
+  token     String   @unique @db.Text // Token único
+  createdAt DateTime @default(now()) // Data de criação
+  updatedAt DateTime @updatedAt // Atualizado automaticamente
 }
