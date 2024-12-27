@@ -2,10 +2,11 @@ POST  http://127.0.0.1:3333/auth/login
 Content-Type: application/json
 
 {
-  "email": "Jarod92@hotmail.com",
+  "email": "Jaquan3@hotmail.com",
   "password": "admin"
 }
 
 ###
 
 GET http://127.0.0.1:3333/Dashboard/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNzM1MjU5MjAxLCJleHAiOjE3MzUyNjI4MDF9.WBBWR5JqI6iLYqv8y--JxWmyNOWE6h3V3BoAYLjOVPk
