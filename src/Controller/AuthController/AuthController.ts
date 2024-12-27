@@ -3,6 +3,7 @@ import { AuthControllerLoginSchema } from "./Schemas/AuthControllerLoginSchema.j
 import { Authenticator } from "../../Utils/Authenticator.js";
 import { Users } from "../../Database/Models/Users.js";
 import { app } from "../../server.js";
+import { env_JWT_EXPIRATION_TIME } from "../../Config/env_config.js";
 
 export class AuthController {
   static async login(request: FastifyRequest, reply: FastifyReply) {
@@ -21,9 +22,9 @@ export class AuthController {
 
     if (isValidUser.isValid) {
       if (isValidUser?.user?.isAdmin) {
-        return app.jwt.sign({ isAdmin: true }, { expiresIn: "1h" });
+        return app.jwt.sign({ isAdmin: true }, { expiresIn: env_JWT_EXPIRATION_TIME });
       }
-      return app.jwt.sign({ isAdmin: false }, { expiresIn: "1h" });
+      return app.jwt.sign({ isAdmin: false }, { expiresIn: env_JWT_EXPIRATION_TIME });
     }
   }
 }
