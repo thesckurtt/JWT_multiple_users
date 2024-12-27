@@ -1,6 +1,6 @@
 import { prisma } from "../../Config/db_config.js";
 import { UserInterface } from "../../TS/Interfaces/UserInterface.js";
-import { env_SALT_PASSWORD} from "../../Config/env_config.js"
+import { env_SALT_PASSWORD } from "../../Config/env_config.js";
 import Joi from "joi";
 import { AuthControllerLoginSchema } from "../../Controller/AuthController/Schemas/AuthControllerLoginSchema.js";
 import { Authenticator } from "../../Utils/Authenticator.js";
@@ -8,10 +8,9 @@ import argon2 from "argon2";
 
 export class Users {
   public static async createUser(data: UserInterface) {
-
     const passwordWithSalt: string = data.password + env_SALT_PASSWORD;
     const hashPassword: string = await argon2.hash(passwordWithSalt);
-    
+
     try {
       const result = await prisma.users.create({
         data: {
@@ -27,7 +26,10 @@ export class Users {
     }
   }
 
-  public static async isValidUser(email: string, password: string): Promise<{user? : UserInterface, isValid: boolean}> {
+  public static async isValidUser(
+    email: string,
+    password: string
+  ): Promise<{ user?: UserInterface; isValid: boolean }> {
     const data = {
       email,
       password,
@@ -37,12 +39,11 @@ export class Users {
       AuthControllerLoginSchema,
       data
     );
-
     if (error) {
-      return {isValid: false}
+      return { isValid: false };
     }
 
-    const user = await Users.getUser(value.email);
+    const user = await Users.getUserByEmail(value.email);
 
     if (!user) {
       return {isValid: false}
@@ -60,12 +61,12 @@ export class Users {
 
     return {isValid: false};
   }
-  public static async getUser(param: string): Promise<UserInterface | null> {
+  
+  public static async getUserByEmail(email: string): Promise<UserInterface | null> {
     const result = await prisma.users.findFirst({
       where: {
         OR: [
-          { email: typeof param === "string" ? param : undefined },
-          { id: typeof param === "string" ? param : undefined },
+          { email: typeof email === "string" ? email : undefined },
         ],
       },
     });
