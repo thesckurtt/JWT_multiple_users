@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
   "email": "Eden_Nienow@hotmail.com",
-  "password": "admin"
+  "password": "incorrectPassword"
 }
 
 ###
