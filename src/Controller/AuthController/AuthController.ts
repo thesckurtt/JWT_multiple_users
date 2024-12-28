@@ -33,6 +33,8 @@ export class AuthController {
           { expiresIn: env_JWT_EXPIRATION_TIME }
         ),
       };
+    }else{
+      return reply.code(401).send({error: "Invalid email or password"})
     }
   }
 }
