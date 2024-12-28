@@ -17,15 +17,23 @@ describe("Auth Routes", () => {
         password: "admin",
       };
 
-      const response = await request(app.server).post("/auth/login").send(credentials);
+      const response = await request(app.server)
+        .post("/auth/login")
+        .send(credentials);
 
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty("token");
       expect(typeof response.body.token).toBe("string");
-      
-      // expect(response.body).toHaveProperty("token");
+    });
+    it("should return 401 for unauthorized access", async () => {
+      const credentials = {
+        email: "test@mail.com",
+        password: "incorrectPassword",
+      };
 
-      // expect(true).toBe(true);
+      const response = await request(app.server).post("/auth/login").send(credentials);
+
+      expect(response.status).toBe(401)
     });
   });
 });
